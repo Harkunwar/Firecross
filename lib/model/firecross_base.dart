@@ -1,16 +1,14 @@
-import 'package:flutter/foundation.dart';
+// abstract class FirecrossBase {
 
-abstract class FirecrossBase {
+//   FirecrossBase({
+//     String apiKey,
+//     String authDomain,
+//     String databaseURL,
+//     String projectId,
+//     String storageBucket,
+//     String messagingSenderId,
+//     String appId,
+//     String measurementId});
 
-  FirecrossBase({
-    String apiKey,
-    String authDomain,
-    String databaseURL,
-    String projectId,
-    String storageBucket,
-    String messagingSenderId,
-    String appId,
-    String measurementId});
-
-  Future<bool> signInWithEmailAndPasswod(String email, String password);
-}
+//   Future<bool> signInWithEmailAndPassword(String email, String password);
+// }

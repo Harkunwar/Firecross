@@ -1,8 +1,9 @@
-import 'package:firecross/model/firecross_base.dart';
+library firecross;
+
 import 'package:firebase/firebase.dart' as fb;
 
-class Firecross extends FirecrossBase {
-  @override
+class Firecross  {
+  // @override
   Firecross(
       {String apiKey,
       String authDomain,
@@ -20,8 +21,8 @@ class Firecross extends FirecrossBase {
         messagingSenderId: messagingSenderId);
   }
 
-  @override
-  Future<bool> signInWithEmailAndPasswod(String email, String password) async {
+  // @override
+  Future<bool> signInWithEmailAndPassword(String email, String password) async {
     try {
       final app = fb.app();
       final auth = fb.auth(app);

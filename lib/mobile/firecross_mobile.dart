@@ -1,10 +1,12 @@
+library firecross;
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firecross/model/firecross_base.dart';
+// import 'package:firecross/model/firecross_base.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
-class Firecross extends FirecrossBase {
-  @override
+class Firecross {
+  // @override
   Firecross(
       {String apiKey,
       String authDomain,
@@ -14,8 +16,8 @@ class Firecross extends FirecrossBase {
       String messagingSenderId}) {
   }
 
-  @override
-  Future<bool> signInWithEmailAndPasswod(String email, String password) async {
+  // @override
+  Future<bool> signInWithEmailAndPassword(String email, String password) async {
     try {
       await  _auth.signInWithEmailAndPassword(email: email, password: password);
       return Future.value(true);
