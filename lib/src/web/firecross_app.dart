@@ -1,13 +1,13 @@
 import 'package:firebase/firebase.dart' as fb;
-import 'package:firecross/src/base/firecross.dart';
+import 'package:firecross/src/base/firecross_app.dart';
 import 'package:firecross/src/web/firecross_auth.dart';
 
-class Firecross extends FirecrossBase {
-  static final Firecross _instance = Firecross._();
+class FirecrossApp extends FirecrossAppBase {
+  static final FirecrossApp _instance = FirecrossApp._();
 
-  Firecross._();
+  FirecrossApp._();
 
-  factory Firecross.initalizeApp(
+  factory FirecrossApp.initalizeApp(
       {String apiKey,
       String authDomain,
       String databaseURL,
@@ -24,7 +24,7 @@ class Firecross extends FirecrossBase {
     return _instance;
   }
 
-  static Firecross get instance => _instance;
+  static FirecrossApp get instance => _instance;
 
   static FirecrossAuth get auth => FirecrossAuth.fromApp(instance);
 }
