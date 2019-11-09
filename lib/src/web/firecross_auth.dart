@@ -53,8 +53,13 @@ class FirecrossAuth implements FirecrossAuthBase {
 
   @override
   Future<FirecrossUser> currentUser() async {
+    _auth.signOut();
     return Future.value(_generateUser(_auth.currentUser));
   }
 
+  @override
+  Future<void> signOut() async {
+    await _auth.signOut();
+  }
 
 }

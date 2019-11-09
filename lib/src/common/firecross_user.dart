@@ -16,8 +16,6 @@ class FirecrossUser {
 
   final String phoneNumber;
 
-  final String lastSignInTimestamp;
-
   FirecrossUser({
     this.displayName,
     this.isAnonymous,
@@ -27,7 +25,6 @@ class FirecrossUser {
     this.photoUrl,
     this.email,
     this.phoneNumber,
-    this.lastSignInTimestamp
   });
 
 }

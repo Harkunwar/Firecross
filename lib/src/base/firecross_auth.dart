@@ -13,8 +13,11 @@ abstract class FirecrossAuthBase {
 
   external Future<FirecrossAuthResult> createUserWithEmailAndPassword(String email, String password);
 
+  external Future<void> signOut();
+
   external static FirecrossAuthBase get instance;
 
   external Future<FirecrossUser> currentUser();
+
 
 }
