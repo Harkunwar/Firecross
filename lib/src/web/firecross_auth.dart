@@ -21,6 +21,7 @@ class FirecrossAuth implements FirecrossAuthBase {
 
   FirecrossUser _generateUser(fb.User user) {
     return FirecrossUser(
+      user: user,
       displayName: user.displayName,
       isAnonymous: user.isAnonymous,
       isEmailVerified: user.emailVerified,

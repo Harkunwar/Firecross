@@ -21,6 +21,7 @@ class FirecrossAuth implements FirecrossAuthBase {
 
   FirecrossUser _generateUser(FirebaseUser user) {
     return FirecrossUser(
+      user: user,
       displayName: user.displayName,
       isAnonymous: user.isAnonymous,
       isEmailVerified: user.isEmailVerified,
