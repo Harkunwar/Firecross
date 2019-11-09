@@ -2,7 +2,7 @@ import 'package:firebase/firebase.dart' as fb;
 import 'package:firecross/src/base/firecross_app.dart';
 import 'package:firecross/src/web/firecross_auth.dart';
 
-class FirecrossApp extends FirecrossAppBase {
+class FirecrossApp implements FirecrossAppBase {
   static final FirecrossApp _instance = FirecrossApp._();
 
   FirecrossApp._();

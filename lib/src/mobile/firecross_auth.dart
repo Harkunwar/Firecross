@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firecross/src/base/firecross_auth.dart';
+import 'package:firecross/src/common/firecross_auth_result.dart';
+import 'package:firecross/src/common/firecross_user.dart';
 import 'package:firecross/src/mobile/firecross_app.dart';
 
-class FirecrossAuth extends FirecrossAuthBase {
-
+class FirecrossAuth implements FirecrossAuthBase {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
 
   final FirecrossApp app;
@@ -18,14 +19,26 @@ class FirecrossAuth extends FirecrossAuthBase {
   static FirecrossAuth get instance => FirecrossAuth._(FirecrossApp.instance);
 
   @override
-  Future<bool> signInWithEmailAndPassword(String email, String password) async {
+  Future<FirecrossAuthResult> signInWithEmailAndPassword(
+      String email, String password) async {
     try {
-      await  _auth.signInWithEmailAndPassword(email: email, password: password);
-      return Future.value(true);
+      final rawUser = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      return FirecrossAuthResult(
+        user: FirecrossUser(
+          displayName: rawUser.user.displayName,
+          isAnonymous: rawUser.user.isAnonymous,
+          isEmailVerified: rawUser.user.isEmailVerified,
+          providerId: rawUser.user.providerId,
+          uid: rawUser.user.uid,
+          photoUrl: rawUser.user.photoUrl,
+          email: rawUser.user.email,
+          phoneNumber: rawUser.user.phoneNumber,
+        ),
+      );
     } catch (e) {
       print(e);
-      return Future.value(false);
+      throw Exception(e.toString());
     }
   }
-
 }
