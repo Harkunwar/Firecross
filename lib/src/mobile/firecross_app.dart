@@ -2,8 +2,6 @@ import 'package:firecross/src/base/firecross_app.dart';
 import 'package:firecross/src/mobile/firecross_auth.dart';
 
 class FirecrossApp implements FirecrossAppBase {
-
-
   static final FirecrossApp _instance = FirecrossApp._();
 
   @override
@@ -17,8 +15,8 @@ class FirecrossApp implements FirecrossAppBase {
       String projectId,
       String storageBucket,
       String messagingSenderId}) {
-        return _instance;
-      }
+    return _instance;
+  }
 
   static FirecrossApp get instance => _instance;
 

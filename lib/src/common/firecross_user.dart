@@ -1,5 +1,4 @@
 class FirecrossUser {
-
   final String displayName;
 
   final bool isAnonymous;
@@ -26,5 +25,4 @@ class FirecrossUser {
     this.email,
     this.phoneNumber,
   });
-
 }

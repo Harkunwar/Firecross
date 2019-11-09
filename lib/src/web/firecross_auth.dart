@@ -21,14 +21,14 @@ class FirecrossAuth implements FirecrossAuthBase {
 
   FirecrossUser _generateUser(fb.User user) {
     return FirecrossUser(
-        displayName: user.displayName,
-        isAnonymous: user.isAnonymous,
-        isEmailVerified: user.emailVerified,
-        providerId: user.providerId,
-        uid: user.uid,
-        photoUrl: user.photoURL,
-        email: user.email,
-        phoneNumber: user.phoneNumber,
+      displayName: user.displayName,
+      isAnonymous: user.isAnonymous,
+      isEmailVerified: user.emailVerified,
+      providerId: user.providerId,
+      uid: user.uid,
+      photoUrl: user.photoURL,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
     );
   }
 
@@ -41,12 +41,13 @@ class FirecrossAuth implements FirecrossAuthBase {
   @override
   Future<FirecrossAuthResult> signInWithEmailAndPassword(
       String email, String password) async {
-      final result = await _auth.signInWithEmailAndPassword(email, password);
-      return _generateAuthResult(result);
+    final result = await _auth.signInWithEmailAndPassword(email, password);
+    return _generateAuthResult(result);
   }
 
   @override
-  Future<FirecrossAuthResult> createUserWithEmailAndPassword(String email, String password) async {
+  Future<FirecrossAuthResult> createUserWithEmailAndPassword(
+      String email, String password) async {
     final result = await _auth.createUserWithEmailAndPassword(email, password);
     return _generateAuthResult(result);
   }
@@ -61,5 +62,4 @@ class FirecrossAuth implements FirecrossAuthBase {
   Future<void> signOut() async {
     await _auth.signOut();
   }
-
 }
