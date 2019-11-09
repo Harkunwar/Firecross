@@ -62,4 +62,13 @@ class FirecrossAuth implements FirecrossAuthBase {
   Future<void> signOut() async {
     await _auth.signOut();
   }
+
+  Future<void> updateProfile({String displayName, bool isEmailVerified, String photoUrl}) async {
+    Map<String, String> data = {};
+    if (displayName != null) data['name'] = displayName;
+    if (isEmailVerified != null) data['isEmailVerified'] = displayName;
+    if (photoUrl != null) data['photoUrl'] = photoUrl;
+    await fb.firestore().collection('users').doc().set(data);
+  }
+  
 }

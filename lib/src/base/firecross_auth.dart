@@ -19,4 +19,7 @@ abstract class FirecrossAuthBase {
   external static FirecrossAuthBase get instance;
 
   external Future<FirecrossUser> currentUser();
+
+  external Future<void> updateProfile(
+      {String displayName, bool isEmailVerified, String photoUrl});
 }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firecross/src/base/firecross_auth.dart';
 import 'package:firecross/src/common/firecross_auth_result.dart';
@@ -61,5 +62,13 @@ class FirecrossAuth implements FirecrossAuthBase {
   @override
   Future<void> signOut() async {
     await _auth.signOut();
+  }
+
+  Future<void> updateProfile({String displayName, bool isEmailVerified, String photoUrl}) async {
+    Map<String, String> data = {};
+    if (displayName != null) data['name'] = displayName;
+    if (isEmailVerified != null) data['isEmailVerified'] = displayName;
+    if (photoUrl != null) data['photoUrl'] = photoUrl;
+    await Firestore.instance.collection('users').document().setData(data);
   }
 }
