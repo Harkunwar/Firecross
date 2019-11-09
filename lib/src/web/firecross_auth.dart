@@ -1,7 +1,7 @@
 import 'package:firebase/firebase.dart' as fb;
 import 'package:firecross/src/base/firecross_auth.dart';
-import 'package:firecross/src/common/firecross_auth_result.dart';
-import 'package:firecross/src/common/firecross_user.dart';
+import 'package:firecross/src/web/firecross_auth_result.dart';
+import 'package:firecross/src/web/firecross_user.dart';
 import 'package:firecross/src/web/firecross_app.dart';
 
 class FirecrossAuth implements FirecrossAuthBase {

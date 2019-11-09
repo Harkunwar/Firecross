@@ -1,6 +1,7 @@
 import 'firecross_auth.dart';
 
 abstract class FirecrossAppBase {
+
   external FirecrossAppBase._();
 
   external factory FirecrossAppBase.initializeApp(

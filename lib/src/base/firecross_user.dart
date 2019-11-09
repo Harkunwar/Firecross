@@ -1,4 +1,4 @@
-class FirecrossUser {
+abstract class FirecrossUserBase {
   final String displayName;
 
   final bool isAnonymous;
@@ -15,7 +15,7 @@ class FirecrossUser {
 
   final String phoneNumber;
 
-  FirecrossUser({
+  FirecrossUserBase({
     this.displayName,
     this.isAnonymous,
     this.isEmailVerified,
@@ -25,4 +25,8 @@ class FirecrossUser {
     this.email,
     this.phoneNumber,
   });
+
+  external Future<void> updateProfile({String displayName, String photoUrl});
+
+  external Future<void> reload();
 }

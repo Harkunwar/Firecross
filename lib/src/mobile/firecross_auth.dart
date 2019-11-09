@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firecross/src/base/firecross_auth.dart';
-import 'package:firecross/src/common/firecross_auth_result.dart';
-import 'package:firecross/src/common/firecross_user.dart';
+import 'package:firecross/src/mobile/firecross_auth_result.dart';
+import 'package:firecross/src/mobile/firecross_user.dart';
 import 'package:firecross/src/mobile/firecross_app.dart';
 
 class FirecrossAuth implements FirecrossAuthBase {
