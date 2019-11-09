@@ -55,7 +55,6 @@ class FirecrossAuth implements FirecrossAuthBase {
 
   @override
   Future<FirecrossUser> currentUser() async {
-    _auth.signOut();
     return Future.value(_generateUser(_auth.currentUser));
   }
 
@@ -64,12 +63,5 @@ class FirecrossAuth implements FirecrossAuthBase {
     await _auth.signOut();
   }
 
-  Future<void> updateProfile({String displayName, bool isEmailVerified, String photoUrl}) async {
-    Map<String, String> data = {};
-    if (displayName != null) data['name'] = displayName;
-    if (isEmailVerified != null) data['isEmailVerified'] = displayName;
-    if (photoUrl != null) data['photoUrl'] = photoUrl;
-    await fb.firestore().collection('users').doc().set(data);
-  }
   
 }

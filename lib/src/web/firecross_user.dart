@@ -36,15 +36,14 @@ class FirecrossUser implements FirecrossUserBase {
   @override
   Future<void> updateProfile({String displayName, String photoUrl}) async {
     UserProfile profile = UserProfile(
-      displayName: displayName?? this.displayName,
-      photoURL: photoUrl?? this.photoUrl,
-
+      displayName: displayName,
+      photoURL: photoUrl,
     );
     await _user.updateProfile(profile);
   }
 
   @override
-  Future<void> reload() {
-    return _user.reload();
+  Future<void> reload() async {
+    await _user.reload();
   }
 }

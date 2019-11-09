@@ -26,7 +26,7 @@ abstract class FirecrossUserBase {
     this.phoneNumber,
   });
 
-  external Future<void> updateProfile({String displayName, String photoUrl});
+  Future<void> updateProfile({String displayName, String photoUrl});
 
-  external Future<void> reload();
+  Future<void> reload();
 }

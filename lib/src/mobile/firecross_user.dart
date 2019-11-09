@@ -34,12 +34,11 @@ class FirecrossUser implements FirecrossUserBase {
   }): _user = user ;
 
   @override
-  Future<void> updateProfile({String displayName, String photoUrl}) {
+  Future<void> updateProfile({String displayName, String photoUrl}) async {
     UserUpdateInfo info = UserUpdateInfo();
     if(displayName != null) info.displayName = displayName;
     if(photoUrl != null) info.photoUrl = photoUrl;
-    _user.updateProfile(info);
-    return null;
+    await _user.updateProfile(info);
   }
 
   @override
