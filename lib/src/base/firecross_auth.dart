@@ -1,6 +1,7 @@
 library firecross;
 
 import 'package:firecross/src/common/firecross_auth_result.dart';
+import 'package:firecross/src/common/firecross_user.dart';
 
 abstract class FirecrossAuthBase {
 
@@ -13,5 +14,7 @@ abstract class FirecrossAuthBase {
   external Future<FirecrossAuthResult> createUserWithEmailAndPassword(String email, String password);
 
   external static FirecrossAuthBase get instance;
+
+  external Future<FirecrossUser> currentUser();
 
 }

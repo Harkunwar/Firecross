@@ -18,18 +18,22 @@ class FirecrossAuth implements FirecrossAuthBase {
 
   static FirecrossAuth get instance => FirecrossAuth._(FirecrossApp.instance);
 
+  FirecrossUser _generateUser(FirebaseUser user) {
+    return FirecrossUser(
+      displayName: user.displayName,
+      isAnonymous: user.isAnonymous,
+      isEmailVerified: user.isEmailVerified,
+      providerId: user.providerId,
+      uid: user.uid,
+      photoUrl: user.photoUrl,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+    );
+  }
+
   FirecrossAuthResult _generateAuthResult(AuthResult result) {
     return FirecrossAuthResult(
-      user: FirecrossUser(
-        displayName: result.user.displayName,
-        isAnonymous: result.user.isAnonymous,
-        isEmailVerified: result.user.isEmailVerified,
-        providerId: result.user.providerId,
-        uid: result.user.uid,
-        photoUrl: result.user.photoUrl,
-        email: result.user.email,
-        phoneNumber: result.user.phoneNumber,
-      ),
+      user: _generateUser(result.user),
     );
   }
 
@@ -47,5 +51,10 @@ class FirecrossAuth implements FirecrossAuthBase {
     final result = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
     return _generateAuthResult(result);
+  }
+
+  @override
+  Future<FirecrossUser> currentUser() async {
+    return _generateUser(await _auth.currentUser());
   }
 }

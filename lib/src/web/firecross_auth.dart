@@ -19,18 +19,22 @@ class FirecrossAuth implements FirecrossAuthBase {
 
   fb.Auth get _auth => fb.auth(fb.app());
 
+  FirecrossUser _generateUser(fb.User user) {
+    return FirecrossUser(
+        displayName: user.displayName,
+        isAnonymous: user.isAnonymous,
+        isEmailVerified: user.emailVerified,
+        providerId: user.providerId,
+        uid: user.uid,
+        photoUrl: user.photoURL,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+    );
+  }
+
   FirecrossAuthResult _generateAuthResult(fb.UserCredential result) {
     return FirecrossAuthResult(
-      user: FirecrossUser(
-        displayName: result.user.displayName,
-        isAnonymous: result.user.isAnonymous,
-        isEmailVerified: result.user.emailVerified,
-        providerId: result.user.providerId,
-        uid: result.user.uid,
-        photoUrl: result.user.photoURL,
-        email: result.user.email,
-        phoneNumber: result.user.phoneNumber,
-      ),
+      user: _generateUser(result.user),
     );
   }
 
@@ -46,4 +50,11 @@ class FirecrossAuth implements FirecrossAuthBase {
     final result = await _auth.createUserWithEmailAndPassword(email, password);
     return _generateAuthResult(result);
   }
+
+  @override
+  Future<FirecrossUser> currentUser() async {
+    return Future.value(_generateUser(_auth.currentUser));
+  }
+
+
 }
