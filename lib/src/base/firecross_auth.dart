@@ -10,6 +10,8 @@ abstract class FirecrossAuthBase {
 
   external Future<FirecrossAuthResult> signInWithEmailAndPassword(String email, String password);
 
+  external Future<FirecrossAuthResult> createUserWithEmailAndPassword(String email, String password);
+
   external static FirecrossAuthBase get instance;
 
 }

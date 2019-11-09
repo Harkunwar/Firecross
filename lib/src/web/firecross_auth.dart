@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:firebase/firebase.dart' as fb;
 import 'package:firecross/src/base/firecross_auth.dart';
 import 'package:firecross/src/common/firecross_auth_result.dart';
@@ -19,29 +17,33 @@ class FirecrossAuth implements FirecrossAuthBase {
 
   static FirecrossAuth get instance => FirecrossAuth._(FirecrossApp.instance);
 
+  fb.Auth get _auth => fb.auth(fb.app());
+
+  FirecrossAuthResult _generateAuthResult(fb.UserCredential result) {
+    return FirecrossAuthResult(
+      user: FirecrossUser(
+        displayName: result.user.displayName,
+        isAnonymous: result.user.isAnonymous,
+        isEmailVerified: result.user.emailVerified,
+        providerId: result.user.providerId,
+        uid: result.user.uid,
+        photoUrl: result.user.photoURL,
+        email: result.user.email,
+        phoneNumber: result.user.phoneNumber,
+      ),
+    );
+  }
+
   @override
   Future<FirecrossAuthResult> signInWithEmailAndPassword(
       String email, String password) async {
-    try {
-      final app = fb.app();
-      final auth = fb.auth(app);
-      final rawUser = await auth.signInWithEmailAndPassword(email, password);
-      window.console.log(rawUser);
-      return FirecrossAuthResult(
-        user: FirecrossUser(
-          displayName: rawUser.user.displayName,
-          isAnonymous: rawUser.user.isAnonymous,
-          isEmailVerified: rawUser.user.emailVerified,
-          providerId: rawUser.user.providerId,
-          uid: rawUser.user.uid,
-          photoUrl: rawUser.user.photoURL,
-          email: rawUser.user.email,
-          phoneNumber: rawUser.user.phoneNumber,
-        ),
-      );
-    } catch (e) {
-      print(e);
-      throw Exception(e.toString());
-    }
+      final result = await _auth.signInWithEmailAndPassword(email, password);
+      return _generateAuthResult(result);
+  }
+
+  @override
+  Future<FirecrossAuthResult> createUserWithEmailAndPassword(String email, String password) async {
+    final result = await _auth.createUserWithEmailAndPassword(email, password);
+    return _generateAuthResult(result);
   }
 }

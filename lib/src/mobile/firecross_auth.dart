@@ -18,27 +18,34 @@ class FirecrossAuth implements FirecrossAuthBase {
 
   static FirecrossAuth get instance => FirecrossAuth._(FirecrossApp.instance);
 
+  FirecrossAuthResult _generateAuthResult(AuthResult result) {
+    return FirecrossAuthResult(
+      user: FirecrossUser(
+        displayName: result.user.displayName,
+        isAnonymous: result.user.isAnonymous,
+        isEmailVerified: result.user.isEmailVerified,
+        providerId: result.user.providerId,
+        uid: result.user.uid,
+        photoUrl: result.user.photoUrl,
+        email: result.user.email,
+        phoneNumber: result.user.phoneNumber,
+      ),
+    );
+  }
+
   @override
   Future<FirecrossAuthResult> signInWithEmailAndPassword(
       String email, String password) async {
-    try {
-      final rawUser = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
-      return FirecrossAuthResult(
-        user: FirecrossUser(
-          displayName: rawUser.user.displayName,
-          isAnonymous: rawUser.user.isAnonymous,
-          isEmailVerified: rawUser.user.isEmailVerified,
-          providerId: rawUser.user.providerId,
-          uid: rawUser.user.uid,
-          photoUrl: rawUser.user.photoUrl,
-          email: rawUser.user.email,
-          phoneNumber: rawUser.user.phoneNumber,
-        ),
-      );
-    } catch (e) {
-      print(e);
-      throw Exception(e.toString());
-    }
+    final result = await _auth.signInWithEmailAndPassword(
+        email: email, password: password);
+    return _generateAuthResult(result);
+  }
+
+  @override
+  Future<FirecrossAuthResult> createUserWithEmailAndPassword(
+      String email, String password) async {
+    final result = await _auth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    return _generateAuthResult(result);
   }
 }
