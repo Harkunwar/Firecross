@@ -58,11 +58,6 @@ class FirecrossAuth implements FirecrossAuthBase {
     await _auth.sendPasswordResetEmail(email);
   }
 
-//  @override
-//  Future<void> confirmPasswordReset(String code, String newPassword) async{
-//    await _auth.confirmPasswordReset(code, newPassword);
-//  }
-
   @override
   Future<FirecrossUser> currentUser() async {
     return Future.value(_generateUser(_auth.currentUser));
