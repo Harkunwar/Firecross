@@ -11,6 +11,10 @@ abstract class FirecrossAuthBase {
   Future<FirecrossAuthResultBase> createUserWithEmailAndPassword(
       String email, String password);
 
+  Future<void> sendPasswordResetEmail(String email);
+
+//  Future<void> confirmPasswordReset(String code, String newPassword);
+
   Future<void> signOut();
 
   Future<FirecrossUserBase> currentUser();
