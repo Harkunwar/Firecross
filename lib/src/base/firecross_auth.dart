@@ -5,8 +5,12 @@ import 'package:firecross/src/base/firecross_user.dart';
 
 abstract class FirecrossAuthBase {
 
+  Future<FirecrossAuthResultBase> signInAnonymously();
+
   Future<FirecrossAuthResultBase> signInWithEmailAndPassword(
       String email, String password);
+
+  Future<FirecrossAuthResultBase> signInWithCustomToken(String token);
 
   Future<FirecrossAuthResultBase> createUserWithEmailAndPassword(
       String email, String password);
@@ -16,5 +20,4 @@ abstract class FirecrossAuthBase {
   Future<void> signOut();
 
   Future<FirecrossUserBase> currentUser();
-
 }

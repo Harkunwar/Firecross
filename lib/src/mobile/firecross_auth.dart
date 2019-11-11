@@ -39,11 +39,28 @@ class FirecrossAuth implements FirecrossAuthBase {
   }
 
   @override
+  Future<FirecrossAuthResult> signInAnonymously() async{
+    final result =  await _auth.signInAnonymously();
+    return _generateAuthResult(result);
+  }
+
+  @override
   Future<FirecrossAuthResult> signInWithEmailAndPassword(
       String email, String password) async {
     final result = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
     return _generateAuthResult(result);
+  }
+
+  @override
+  Future<FirecrossAuthResult> signInWithCustomToken(String token) async{
+    final result = await _auth.signInWithCustomToken(token: token);
+    return _generateAuthResult(result);
+  }
+
+  @override
+  Future<AuthResult> signInWithCredentials(AuthCredential credential) async{
+    return await _auth.signInWithCredential(credential);
   }
 
   @override
